@@ -8,7 +8,7 @@ import android.view.MotionEvent
 import android.view.View
 
 open class SliderView(context: Context, attrs: AttributeSet) : View(context, attrs) {
-    protected val wheelPaint=Utils.fillPaint(Color.WHITE).apply {
+    protected val wheelPaint=Utils.fillPaint(Color.GRAY).apply {
         isAntiAlias=true
         setShadowLayer(
             5f,
@@ -83,6 +83,7 @@ open class SliderView(context: Context, attrs: AttributeSet) : View(context, att
     fun setRatio(t:Float){
         if (t!=currentRatio && t>=0f && t<=1f){
             currentRatio=t
+            invalidate()
             ratioChangeListener?.invoke(t)
         }
     }

@@ -59,6 +59,9 @@ object Utils {
     fun toRGB(colorWithAlpha: Int):Int{
         return Color.rgb(Color.red(colorWithAlpha), Color.green(colorWithAlpha), Color.blue(colorWithAlpha))
     }
+    fun colorWithAlpha(a:Int,color: Int):Int{
+        return Color.argb(a,Color.red(color), Color.green(color), Color.blue(color))
+    }
 }
 fun View.getBitmap(): Bitmap {
     val bitmap = Bitmap.createBitmap(measuredWidth, measuredHeight, Bitmap.Config.ARGB_8888)
@@ -72,6 +75,11 @@ fun RectF.fromXYWH(x:Float,y:Float,w:Float,h:Float): RectF {
     right=x+w
     bottom=y+h
     return this
+}
+fun Int.toHSV():FloatArray{
+    val hsv= FloatArray(3)
+    Color.colorToHSV(this,hsv)
+    return  hsv
 }
 fun View.getRectF()=RectF().fromXYWH(0f,0f,measuredWidth.toFloat(),measuredHeight.toFloat())
 val Number.toPx get() = TypedValue.applyDimension(
