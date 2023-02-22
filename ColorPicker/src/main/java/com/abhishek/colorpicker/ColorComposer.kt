@@ -47,21 +47,22 @@ open class ColorComposer(context: Context, attrs: AttributeSet) : View(context, 
         super.onSizeChanged(w, h, oldw, oldh)
         onSize()
     }
-    private fun onSize(){
+    private fun onSize() {
         bitmap = Bitmap.createBitmap(measuredWidth, measuredHeight, Bitmap.Config.ARGB_8888)
-        updateDrawing()
+        updateShaderAndBitmap()
     }
-    private fun updateDrawing(){
-        this.vShader=LinearGradient(
-            0f,0f,0f,measuredHeight.toFloat(),
-            Color.WHITE,Color.BLACK,Shader.TileMode.CLAMP
+
+    private fun updateShaderAndBitmap() {
+        this.vShader = LinearGradient(
+            0f, 0f, 0f, measuredHeight.toFloat(),
+            Color.WHITE, Color.BLACK, Shader.TileMode.CLAMP
         )
-        this.hShader=LinearGradient(
-            0f,0f,measuredWidth.toFloat(),0f,
-            Color.WHITE,Utils.toRGB(composeColor),Shader.TileMode.CLAMP
+        this.hShader = LinearGradient(
+            0f, 0f, measuredWidth.toFloat(), 0f,
+            Color.WHITE, Utils.toRGB(composeColor), Shader.TileMode.CLAMP
         )
-        paint.shader=ComposeShader(vShader,hShader,PorterDuff.Mode.MULTIPLY)
-        if(bitmap!=null){
+        paint.shader = ComposeShader(vShader, hShader, PorterDuff.Mode.MULTIPLY)
+        if (bitmap != null) {
             val canvas=Canvas(bitmap!!)
             canvas.drawPaint(paint)
         }
@@ -76,8 +77,11 @@ open class ColorComposer(context: Context, attrs: AttributeSet) : View(context, 
 
         if(p.y<0)p.y=0f
         if(p.y>1)p.y=1f
+
         setRatioPoint(p)
     }
+
+
     override fun onTouchEvent(e: MotionEvent): Boolean {
         when(e.action){
             MotionEvent.ACTION_DOWN->{
@@ -89,14 +93,19 @@ open class ColorComposer(context: Context, attrs: AttributeSet) : View(context, 
                 return true
             }
             MotionEvent.ACTION_UP->{
+                return true
             }
+
         }
+
         return super.onTouchEvent(e)
     }
-    private fun updateCurrentColor(){
-        val current=getColor()
-        if(oldColor!=current){
-            oldColor=current
+    private fun updateCurrentColor() {
+        val current = getColor()
+        println("$oldColor $current")
+
+        if (oldColor != current) {
+            oldColor = current
             invalidate()
             colorChangeListener?.invoke()
         }
@@ -106,12 +115,13 @@ open class ColorComposer(context: Context, attrs: AttributeSet) : View(context, 
         if(p.x !=ratioPoint.x || p.y!=ratioPoint.y){
             ratioPoint=p
             updateCurrentColor()
+            invalidate()
         }
     }
     fun setComposeColor(color:Int){
         if(color!=composeColor){
             composeColor=color
-            updateDrawing()
+            updateShaderAndBitmap()
             updateCurrentColor()
         }
     }
@@ -119,12 +129,12 @@ open class ColorComposer(context: Context, attrs: AttributeSet) : View(context, 
         if(getColor()!=color){
             //update
             val hsv=color.toHSV()
-            setComposeColor(Color.HSVToColor(hsv))
+            setComposeColor(Color.HSVToColor(floatArrayOf(hsv[0], 1f, 1f)))
             setRatioPoint(
                 PointF(
-                hsv[1],
-                1-hsv[2]
-            )
+                    hsv[1],
+                    1 - hsv[2]
+                )
             )
         }
     }
