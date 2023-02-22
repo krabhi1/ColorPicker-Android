@@ -57,9 +57,10 @@ class ColorPickerDialog : DialogFragment() {
                 val alpha=Color.alpha(currentColor.value!!)
                 val newColor=Utils.colorWithAlpha(alpha,colorComposer.getColor())
                 currentColor.value=newColor
+                alphaSlider.setColor(newColor)
             }
             currentColor.observe(viewLifecycleOwner){color->
-                color.let {
+                color?.let {
                     colorView.setColor(it)
                 }
             }

@@ -36,6 +36,9 @@ class AlphaSlider(context: Context, attrs: AttributeSet) :SliderView(context,att
         onSize()
     }
     private fun onSize(){
+        updateShader()
+    }
+    private fun updateShader(){
         gradientPaint.shader= LinearGradient(
             0f,0f,
             measuredWidth.toFloat(),0f,0,Utils.toRGB(currentColor),Shader.TileMode.CLAMP
@@ -63,6 +66,7 @@ class AlphaSlider(context: Context, attrs: AttributeSet) :SliderView(context,att
     fun setColor(color:Int){
         if (currentColor!=color){
             currentColor=color
+            updateShader()
             invalidate()
         }
     }
