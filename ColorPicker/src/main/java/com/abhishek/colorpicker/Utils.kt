@@ -1,11 +1,7 @@
 package com.abhishek.colorpicker
 
 import android.content.res.Resources
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.RectF
+import android.graphics.*
 import android.util.Size
 import android.util.TypedValue
 import android.view.View
@@ -76,12 +72,20 @@ fun RectF.fromXYWH(x:Float,y:Float,w:Float,h:Float): RectF {
     bottom=y+h
     return this
 }
-fun Int.toHSV():FloatArray{
-    val hsv= FloatArray(3)
-    Color.colorToHSV(this,hsv)
-    return  hsv
+
+fun Int.toHSV(): FloatArray {
+    val hsv = FloatArray(3)
+    Color.colorToHSV(this, hsv)
+    return hsv
 }
-fun View.getRectF()=RectF().fromXYWH(0f,0f,measuredWidth.toFloat(),measuredHeight.toFloat())
+
+fun Int.colorInfo(): String {
+    val hsl = this.toHSV()
+    return "argba ${Color.alpha(this)} ${Color.red(this)} ${Color.green(this)} ${Color.blue(this)} " +
+            "hsv ${hsl[0]} ${hsl[1]} ${hsl[2]}"
+}
+
+fun View.getRectF() = RectF().fromXYWH(0f, 0f, measuredWidth.toFloat(), measuredHeight.toFloat())
 val Number.toPx get() = TypedValue.applyDimension(
     TypedValue.COMPLEX_UNIT_DIP,
     this.toFloat(),
