@@ -66,7 +66,6 @@ class HueSlider(context: Context, attrs: AttributeSet) :SliderView(context,attrs
     }
     fun setHue(hue:Int){
         //just set hue
-        println("hue $hue")
         setRatio(hue / 360f)
     }
     fun getColor():Int{

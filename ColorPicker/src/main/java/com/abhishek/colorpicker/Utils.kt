@@ -59,18 +59,30 @@ object Utils {
         return Color.argb(a,Color.red(color), Color.green(color), Color.blue(color))
     }
 }
+fun IntArray.swapFromBack() {
+    for (i in (size - 1) downTo 1) {
+        this[i] = this[i - 1]
+    }
+}
+
 fun View.getBitmap(): Bitmap {
     val bitmap = Bitmap.createBitmap(measuredWidth, measuredHeight, Bitmap.Config.ARGB_8888)
     val canvas = Canvas(bitmap)
     draw(canvas)
     return bitmap
 }
-fun RectF.fromXYWH(x:Float,y:Float,w:Float,h:Float): RectF {
-    left=x
-    top=y
-    right=x+w
-    bottom=y+h
+
+fun RectF.fromXYWH(x: Float, y: Float, w: Float, h: Float): RectF {
+    left = x
+    top = y
+    right = x + w
+    bottom = y + h
     return this
+}
+
+fun RectF.isInside(x: Float, y: Float): Boolean {
+    if (x >= left && x <= right && y >= top && y <= bottom) return true
+    return false
 }
 
 fun Int.toHSV(): FloatArray {

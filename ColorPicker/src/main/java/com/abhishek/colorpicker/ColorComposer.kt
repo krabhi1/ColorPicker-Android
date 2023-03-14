@@ -102,7 +102,6 @@ open class ColorComposer(context: Context, attrs: AttributeSet) : View(context, 
     }
     private fun updateCurrentColor() {
         val current = getColor()
-        println("$oldColor $current")
 
         if (oldColor != current) {
             oldColor = current
