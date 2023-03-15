@@ -81,7 +81,7 @@ fun RectF.fromXYWH(x: Float, y: Float, w: Float, h: Float): RectF {
 }
 
 fun RectF.isInside(x: Float, y: Float): Boolean {
-    if (x >= left && x <= right && y >= top && y <= bottom) return true
+    if (x in left..right && y >= top && y <= bottom) return true
     return false
 }
 

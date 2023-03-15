@@ -1,79 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     tools:context=".ColorPickerDialog">
-
-    <com.abhishek.colorpicker.HueSlider
-        android:id="@+id/hueSlider"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/alphaSlider"
-        app:layout_constraintEnd_toEndOf="@+id/alphaSlider"
-        app:layout_constraintStart_toStartOf="@+id/alphaSlider" />
-
-    <com.abhishek.colorpicker.AlphaSlider
-        android:id="@+id/alphaSlider"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/colorBox"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/colorView" />
 
     <com.abhishek.colorpicker.ColorComposer
         android:id="@+id/colorComposer"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/hueSlider"
-        app:layout_constraintDimensionRatio="1,1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_width="match_parent"
+        android:layout_height="160dp" />
 
-    <com.abhishek.colorpicker.ColorView
-        android:id="@+id/colorView"
-        android:layout_width="50dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/alphaSlider"
-        app:layout_constraintDimensionRatio="1,1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/hueSlider" />
-
-    <Button
-        android:id="@+id/button_cancel"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="64dp"
-        android:text="cancel"
-        app:layout_constraintBottom_toBottomOf="@+id/button_ok"
-        app:layout_constraintEnd_toStartOf="@+id/button_ok"
-        app:layout_constraintTop_toTopOf="@+id/button_ok" />
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/button_ok"
-        android:layout_width="wrap_content"
+        <com.abhishek.colorpicker.ColorView
+            android:id="@+id/colorView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="8dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <com.abhishek.colorpicker.HueSlider
+                android:id="@+id/hueSlider"
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:paddingLeft="4dp"
+                android:paddingTop="4dp"
+                android:paddingRight="4dp"
+                android:paddingBottom="4dp" />
+
+            <com.abhishek.colorpicker.AlphaSlider
+                android:id="@+id/alphaSlider"
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:paddingLeft="4dp"
+                android:paddingTop="4dp"
+                android:paddingRight="4dp"
+                android:paddingBottom="4dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="4dp"
-        android:text="ok"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="24dp"
+        android:text=" Recent :"
+        android:textColor="#434343"
+        android:textStyle="normal" />
 
     <com.abhishek.colorpicker.ColorBox
         android:id="@+id/colorBox"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/button_ok"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_cancel"
+            style="outline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:text="cancel" />
+
+        <Button
+            android:id="@+id/button_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:text="ok" />
+    </LinearLayout>
+
+</LinearLayout>
