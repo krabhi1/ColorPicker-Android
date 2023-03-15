@@ -1,9 +1,9 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-    id 'maven-publish'
+
 }
-group = 'com.github.jitpack'
+group = 'com.github.ab44gl'
 version = '1.0'
 
 android {
@@ -55,7 +55,7 @@ afterEvaluate {
             // Creates a Maven publication called "release".
             release(MavenPublication) {
                 from components.release
-                groupId = 'com.github.jitpack'
+                groupId = 'com.github.ab44gl'
                 artifactId = 'android-colorpicker'
                 version = '1.0'
             }
