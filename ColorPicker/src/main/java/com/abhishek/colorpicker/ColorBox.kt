@@ -16,11 +16,12 @@ class ColorBox(context: Context, attrs: AttributeSet) : View(context, attrs) {
         color = Color.BLACK
     }
     private val rect = RectF()
+    private val roundSize = resources.getDimensionPixelSize(R.dimen.color_picker_radi).toFloat()
     override fun onDraw(canvas: Canvas) {
         makeRects { rect, i, j ->
             paint.color = colorHolder.colors[i + j * 5]
             if (paint.color == 0) paint.color = Color.BLACK
-            canvas.drawRect(rect, paint)
+            canvas.drawRoundRect(rect, roundSize, roundSize, paint)
             return@makeRects false
         }
     }
@@ -48,7 +49,7 @@ class ColorBox(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        val size = Utils.setWrapSize(200.toPx, 80.toPx, widthMeasureSpec, heightMeasureSpec)
+        val size = Utils.setWrapSize(200.toPx + paddingLeft + paddingRight, 80.toPx + paddingTop + paddingBottom, widthMeasureSpec, heightMeasureSpec)
         setMeasuredDimension(size.width, size.height)
     }
 

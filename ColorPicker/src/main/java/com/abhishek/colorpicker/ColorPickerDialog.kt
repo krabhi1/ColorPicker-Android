@@ -1,5 +1,6 @@
 package com.abhishek.colorpicker
 
+import android.app.ActionBar.LayoutParams
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,7 +17,7 @@ import java.io.*
 
 class ColorPickerDialog : DialogFragment() {
     private lateinit var binding: FragmentColorPickerDialogBinding
-    private var currentColor = MutableLiveData(Color.argb(100, 255, 0, 0))
+    private var currentColor = MutableLiveData(Color.argb(255, 255, 0, 0))
     private var okCancelListener: OkCancelFun? = null
     private var colorHolder = MutableLiveData(ColorHolder())
     private lateinit var colorHolderFile: File
@@ -58,7 +59,7 @@ class ColorPickerDialog : DialogFragment() {
         val metrics = resources.displayMetrics
         val width = metrics.widthPixels
         val height = metrics.heightPixels
-        requireDialog().window?.setLayout((6 * width) / 7, height * 80 / 100)
+        requireDialog().window?.setLayout((6 * width) / 7, LayoutParams.WRAP_CONTENT)
     }
     private fun initialize(){
         binding.apply {
