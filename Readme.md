@@ -2,6 +2,12 @@
 A android color picker library
 Easy to use and it have a features to save last some colors.
 
+### How to implement
+Add the below code in **build.gradle** file.
+```
+implementation 'com.github.ab44gl:ColorPicker-Android:2.0'
+```
+
 #### Here is an example images:
 
 | Example 1  | Example 2 |
