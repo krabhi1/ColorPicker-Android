@@ -2,6 +2,24 @@
 A android color picker library
 Easy to use and it have a features to save last some colors.
 
+### How to
+#### add to repositories 
+```
+maven { url 'https://jitpack.io' }
+```
+#### add  dependencies build.gradle(module)
+```
+implementation 'com.github.ab44gl:ColorPicker-Android:2.0'
+```
+#### to show dialog
+```kotlin
+val dialog = ColorPickerDialog()
+dialog.setOnOkCancelListener { isOk, color ->
+  //do with color
+}
+dialog.show(supportFragmentManager)
+```
+
 #### Here is an example images:
 
 | Example 1  | Example 2 |
