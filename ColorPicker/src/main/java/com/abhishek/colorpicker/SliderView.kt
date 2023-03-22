@@ -15,6 +15,7 @@ open class SliderView(context: Context, attrs: AttributeSet) : View(context, att
             0f, 0f,
             Color.GRAY
         )
+        setLayerType(LAYER_TYPE_SOFTWARE,this)
     }
     protected var currentRatio = 0f
     private var ratioChangeListener: ((t: Float) -> Unit)? = null
