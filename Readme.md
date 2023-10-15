@@ -9,7 +9,7 @@ maven { url 'https://jitpack.io' }
 ```
 #### add  dependencies build.gradle(module)
 ```groovy
-implementation 'com.github.ab44gl:ColorPicker-Android:2.0'
+implementation 'com.github.krAbhiDev:ColorPicker-Android:2.0.1'
 ```
 #### to show dialog
 ```kotlin
