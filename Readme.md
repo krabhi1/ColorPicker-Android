@@ -4,11 +4,11 @@ Easy to use and it have a features to save last some colors.
 
 ### How to
 #### add to repositories 
-```
+```groovy
 maven { url 'https://jitpack.io' }
 ```
 #### add  dependencies build.gradle(module)
-```
+```groovy
 implementation 'com.github.ab44gl:ColorPicker-Android:2.0'
 ```
 #### to show dialog
